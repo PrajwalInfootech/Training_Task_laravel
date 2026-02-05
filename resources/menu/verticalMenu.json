@@ -1,0 +1,25 @@
+{
+  "menu": [
+       {
+  "url": "analysis",
+  "name": "Analytics",
+  "icon": "menu-icon tf-icons ti ti-map",
+  "slug": "analysis"
+},
+    {
+      "url":"dashboard",
+      "name": "Add Products",
+      "icon": "menu-icon tf-icons ti ti-shopping-cart",
+      "slug": "dashboard"
+     
+    },
+    {
+      "url":"products",
+      "name": "View Products",
+      "icon": "menu-icon tf-icons ti ti-layout-sidebar",
+      "slug": "products"
+     
+    }
+   
+  ]
+}
