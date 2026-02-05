@@ -8,6 +8,13 @@
 /vendor
 
 # .env
+.env
+.env.*
+.DS_Store
+**/.DS_Store
+/storage
+/node_modules
+/vendor
 .env.backup
 .env.production
 .phpunit.result.cache
