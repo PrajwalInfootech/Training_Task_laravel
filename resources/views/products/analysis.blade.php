@@ -203,8 +203,7 @@
             <small id="draftCount">0</small>
           </div>
         </li>
-
-      </ul>
+</ul>
 
       <div id="statusBarChart"></div>
     </div>
@@ -248,7 +247,8 @@
         <!-- Expenses -->
 <div class="col-md-4 p-4 d-flex flex-column align-items-center  ">
 <div class="card h-100 w-100 p-3">
-<h5>Expenses on each category</h5>
+<div class="d-flex justify-content-between">
+<h5>Expenses On Each Category</h5>
   <!-- Header row -->
  <div class="dropdown mb-2">
   <button
@@ -264,7 +264,7 @@
     <a class="dropdown-item expense-year" data-year="2024">2024</a>
   </div>
 </div>
-
+</div>
 
   <!-- Chart center -->
   <div class="d-flex justify-content-center align-items-center flex-grow-1">
@@ -293,13 +293,14 @@
   <div class="card-body">
     <h5 class="mb-2">Profit Overview</h5>
 <small>(All Time)</small>
-    <h3 id="profitAmount" class="mb-1">₹0</h3>
-    <p class="text-muted mb-4">Revenue vs Expenses</p>
 
-    <div style="height:280px">
+    <div style="height:320px">
       <canvas id="profitChart"></canvas>
     </div>
   </div>
+  <h3 id="profitAmount" class="ms-5">₹0</h3>
+<p class="text-muted  ms-5">Revenue vs Expenses</p>
+
 </div>
 
       </div>

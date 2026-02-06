@@ -280,8 +280,8 @@ function fetchRevenue(selectedDate = null) {
         labels = daily.map(d => d.date);
         values = daily.map(d => d.total);
 
-        document.getElementById('totalRevenueText').innerText =
-          '₹' + response.data.total_revenue;
+         document.getElementById('totalRevenueText').innerText =
+          '₹' + Number(response.data.total_revenue).toLocaleString('en-IN');
       }
 
       renderRevenueChart(labels, values);
@@ -476,7 +476,7 @@ document.addEventListener('DOMContentLoaded', function () {
           labels: ['Revenue', 'Expenses'],
           datasets: [{
             data: [revenue, expenses],
-            backgroundColor: ['#28c76f', '#ea5455'],
+            backgroundColor: ['#2833c7', '#5468ead0'],
             borderRadius: 10,
             barThickness: 40
           }]
