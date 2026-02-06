@@ -169,4 +169,20 @@ public function newlyAddedProducts(int $userId, int $days = 7)
             'profit' => (float) ($totalRevenue - $totalExpenses)
         ];
     }
+     public function expensesByYear(int $userId, int $year): array
+    {
+        $expenses = Expense::where('user_id', $userId)
+            ->whereYear('expense_date', $year)
+            ->select(
+                'category',
+                DB::raw('SUM(amount) as total')
+            )
+            ->groupBy('category')
+            ->get();
+
+        return [
+            'total' => $expenses->sum('total'),
+            'categories' => $expenses
+        ];
+    }
 }

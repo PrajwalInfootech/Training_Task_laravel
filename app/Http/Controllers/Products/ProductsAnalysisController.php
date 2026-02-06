@@ -101,4 +101,15 @@ public function getcustomrevenue(ProductAnalysisService $analytics)
             'data' => $data
         ]);
     }
+    public function ExpensesyearWise(Request $request, ProductAnalysisService $service)
+    {
+        $year = $request->get('year', now()->year);
+
+        $data = $service->expensesByYear(auth()->id(), $year);
+
+        return response()->json([
+            'status' => true,
+            'data' => $data
+        ]);
+    }
 }

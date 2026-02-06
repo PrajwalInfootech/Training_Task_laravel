@@ -246,20 +246,25 @@
         </div>
 
         <!-- Expenses -->
-<div class="col-md-4 p-4 d-flex flex-column align-items-center  text-center">
+<div class="col-md-4 p-4 d-flex flex-column align-items-center  ">
 <div class="card h-100 w-100 p-3">
-
+<h5>Expenses on each category</h5>
   <!-- Header row -->
-  <div class="d-flex justify-content-between align-items-start mb-2">
-    <div>
-      <h5 class="mb-0">Expenses</h5>
-      <p class="mb-0 text-muted">2026</p>
-    </div>
+ <div class="dropdown mb-2">
+  <button
+    class="btn btn-sm btn-label-primary dropdown-toggle"
+    data-bs-toggle="dropdown"
+  >
+    <span id="expenseYearText">2026</span>
+  </button>
 
-    <div class="text-end">
-      <h3 class="mb-0" id="totalExpenseText">₹0</h3>
-    </div>
+  <div class="dropdown-menu dropdown-menu-end">
+    <a class="dropdown-item expense-year" data-year="2026">2026</a>
+    <a class="dropdown-item expense-year" data-year="2025">2025</a>
+    <a class="dropdown-item expense-year" data-year="2024">2024</a>
   </div>
+</div>
+
 
   <!-- Chart center -->
   <div class="d-flex justify-content-center align-items-center flex-grow-1">
@@ -285,7 +290,7 @@
       <!-- Profit last month -->
       <div class="col-xl-6 col-sm-6">
         <div class="card h-100">
-  <div class="card-body text-center">
+  <div class="card-body">
     <h5 class="mb-2">Profit Overview</h5>
 <small>(All Time)</small>
     <h3 id="profitAmount" class="mb-1">₹0</h3>

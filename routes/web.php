@@ -448,9 +448,9 @@ Route::middleware('auth')
     Route::get('/dashboard/stats', [ProductsAnalysisController::class, 'stats']);
     Route::get('/dashboard/new-products', [ProductsAnalysisController::class, 'newlyAdded']);
     Route::get('/dashboard/getrevenue', [ProductsAnalysisController::class, 'getcustomrevenue']);
-        Route::get('/revenue/year-wise', [ProductsAnalysisController::class, 'yearWise']);
     Route::get('/dashboard/expenses/category-wise', [ProductsAnalysisController::class, 'categoryWise']);
     Route::get('/dashboard/getprofit', [ProductsAnalysisController::class, 'GetProfit']);
+    Route::get('/dashboard/yearwiseexpenses', [ProductsAnalysisController::class, 'ExpensesyearWise']);
 
 });
 

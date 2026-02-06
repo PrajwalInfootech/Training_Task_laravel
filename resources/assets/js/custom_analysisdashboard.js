@@ -324,26 +324,10 @@ function fetchRevenue(selectedDate = null) {
 //   });
 // }
 
-document.addEventListener('DOMContentLoaded', function () {
-  loadRevenueByYear(2026);
 
-  document.querySelectorAll('.year-item').forEach(item => {
-    item.addEventListener('click', function () {
-      const year = this.dataset.year;
-
-      document.getElementById('selectedYear').innerText = year;
-
-      document.querySelectorAll('.year-item')
-        .forEach(i => i.classList.remove('active'));
-      this.classList.add('active');
-
-      loadRevenueByYear(year);
-    });
-  });
-});
 
 function loadRevenueByYear(year) {
-  fetch(`/dashboard/revenue/year-wise?year=${year}`)
+  fetch(`dashboard/yearwiseexpenses?year=${year}`)
     .then(res => res.json())
     .then(response => {
       if (!response.status) return;
@@ -401,62 +385,73 @@ function renderRevenueChart(labels, values) {
 let expenseChart = null;
 
 document.addEventListener('DOMContentLoaded', function () {
-  loadExpenseChart();
-});
 
-function loadExpenseChart() {
-  fetch('/dashboard/expenses/category-wise')
-    .then(res => res.json())
-    .then(response => {
-      if (!response.status) return;
+  loadExpenses(new Date().getFullYear());
 
-      const labels = response.data.map(i => i.category);
-      const values = response.data.map(i => i.total);
+  document.querySelectorAll('.expense-year').forEach(item => {
+    item.addEventListener('click', function () {
+      const year = this.dataset.year;
+      document.getElementById('expenseYearText').innerText = year;
+      loadExpenses(year);
+    });
+  });
 
-      const total = values.reduce((a, b) => a + b, 0);
-      document.getElementById('totalExpenseText').innerText = '₹' + total;
+  function loadExpenses(year) {
+    fetch(`/dashboard/yearwiseexpenses?year=${year}`)
+      .then(res => res.json())
+      .then(res => {
+        if (!res.status) return;
 
-      renderExpensePie(labels, values);
-    })
-    .catch(err => console.error('Expense chart error:', err));
+        const categories = res.data.categories;
+        const total = res.data.total;
+
+   const el = document.getElementById('totalExpenseText');
+if (el) {
+  el.innerText = '₹' + total;
 }
 
-function renderExpensePie(labels, values) {
-  const ctx = document.getElementById('generatedLeadsChart');
 
-  if (expenseChart) {
-    expenseChart.destroy();
+        const labels = categories.map(c => c.category);
+        const values = categories.map(c => c.total);
+
+        renderExpenseChart(labels, values);
+      });
   }
 
-  expenseChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-      labels,
-      datasets: [{
-        data: values,
-        backgroundColor: [
-          '#696cff',
-          '#03c3ec',
-          '#71dd37',
-          '#ffab00',
-          '#ff3e1d'
-        ]
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          position: 'bottom',
-          labels: {
-            boxWidth: 12
+  function renderExpenseChart(labels, values) {
+    const ctx = document.getElementById('generatedLeadsChart');
+
+    if (expenseChart) expenseChart.destroy();
+
+    expenseChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels,
+        datasets: [{
+          data: values,
+          backgroundColor: [
+            '#696cff',
+            '#28c76f',
+            '#ea5455',
+            '#ff9f43',
+            '#00cfe8'
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom'
           }
         }
       }
-    }
-  });
-}
+    });
+  }
+
+});
+
 let profitChart = null;
 
 document.addEventListener('DOMContentLoaded', function () {
